@@ -1,9 +1,0 @@
-[project]
-name = "dacon-elec-0825"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.9"
-dependencies = [
-    "pycaret[full]>=3.3.2",
-]
