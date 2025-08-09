@@ -42,15 +42,15 @@ def preprocess_data(file_path, num_building):
     df['day'] = df['일시'].apply(lambda x: int(x[6:8]))
     df['time'] = df['일시'].apply(lambda x: int(x[9:11]))
     df = df.drop(columns=['일시'])
+    if 'test' in file_path:
+        df['일조(hr)'] = 0.0
+        df['일사(MJ/m2)'] = 0.0
     return df
 
 
 def main(num_building):
     train_df = preprocess_data('./open/train.csv', num_building)
     test_df = preprocess_data('./open/test.csv', num_building)
-
-    train_x = train_df.drop(columns=['일사(MJ/m2)', '일조(hr)', '전력소비량(kWh)'])
-    train_y = train_df['전력소비량(kWh)']
 
     # PyCaret 환경 설정 (GPU 최적화)
     print("GPU 가속을 위한 PyCaret 환경 설정 중...")
@@ -63,7 +63,7 @@ def main(num_building):
         use_gpu=True,  # GPU 사용 활성화
         feature_selection=False,
         remove_multicollinearity=False,
-        ignore_features=['num_date_time', '일시', '건물번호', '일조(hr)', '일사(MJ/m2)'],
+        ignore_features=['num_date_time'],
         train_size=0.8,  # 학습 데이터 비율 증가 (GPU 효율성)
         fold_strategy='kfold',
         fold=5,
