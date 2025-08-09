@@ -6,5 +6,10 @@ dist/
 wheels/
 *.egg-info
 
+# files
+*.pkl
+*.ckpt
+*.csv
+
 # Virtual environments
 .venv
