@@ -1,0 +1,21 @@
+# 가상환경 및 캐시
+**/.venv/
+**/__pycache__/
+**/*.pyc
+
+# 데이터/출력 (런타임 마운트 권장)
+DATA/
+output/
+src/pycaret_result/
+
+# VCS/에디터 산출물
+.git/
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+
+# 기타 임시 파일
+*.log
+*.tmp
+*.out
